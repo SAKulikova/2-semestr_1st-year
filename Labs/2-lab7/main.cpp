@@ -13,10 +13,7 @@ public:
     {
         std::cout << "Shape constructor" << std::endl;
     }
-    void Area()
-    {
-        std::cout << "The square of figure is " << m_square << std::endl;
-    }
+    virtual void Area() {}
     virtual ~Shape()
     {
         std::cout << "Shape destructor" << std::endl;
@@ -34,10 +31,10 @@ public:
         std::cout << "Circle destructor" << std::endl;
     }
     // пи * радиус в квадрате
-    double getArea()
+    void Area()
     {
         m_square = acos(-1)*pow(m_size[0],2);
-        //std::cout << "The square of circle is " << m_square << std::endl;;
+        std::cout << "The square of circle is " << m_square << std::endl;;
     }
 };
 class Triangle : public Shape
@@ -52,10 +49,11 @@ public:
         std::cout << "Triangle destructor" << std::endl;
     }
     //Площадь по формуле Герона
-    double getArea()
+    void Area()
     {
         double pp = (m_size[0] + m_size[1] + m_size[2]) / 2; //Полупериметр
         m_square = sqrt(pp*(pp - m_size[0])*(pp - m_size[1])*(pp - m_size[2]));
+        std::cout << "The square of triangle is " << m_square << std::endl;;
     }
 };
 class Rectangle : public Shape
@@ -69,23 +67,21 @@ public:
     {
         std::cout << "Rectangle destructor" << std::endl;
     }
-    double getArea()
+    void Area()
     {
         m_square = m_size[0] * m_size[1];
+        std::cout << "The square of rectangle is " << m_square << std::endl;;
     }
 };
 int main()
 {
     std::vector<int> tr = {4,3,5};//стороны треугольника
     Triangle triangle("Blue", &tr, 12, 13);
-    triangle.getArea();
     triangle.Area();
-    /*std::vector<int> rec = {2,8};//стороны прямоугольника
+    std::vector<int> rec = {2,8};//стороны прямоугольника
     Rectangle rectangle("Red", &rec, - 1, 8);
-    rectangle.getArea();
     rectangle.Area();
     std::vector<int> cir = {6};//радиус
     Circle circle("Green", &cir, 9, 0);
-    circle.getArea();
-    circle.Area();*/
+    circle.Area();
 }
